@@ -1,7 +1,8 @@
-import React, { useEffect, useState, ReactElement } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { SafeAreaView, View, Dimensions } from 'react-native'
-import { GradientBackground, Board, Text, Button } from '@components'
+import { GradientBackground, Text } from '@components'
 import styles from './single-player-game.styles'
+import { Board, Button } from '@components'
 import {
   isEmpty,
   BoardState,
@@ -14,16 +15,23 @@ import {
 const SCREEN_WIDTH = Dimensions.get('screen').width
 
 export default function Game(): ReactElement {
-  //prettier-ignore
+  // prettier-ignore
   const [state, setState] = useState<BoardState>([
-    null, null, null,
-    null, null, null,
-    null, null, null,
-  ]);
+        null, null, null,
+        null, null, null,
+        null, null, null
+    ]);
   const [turn, setTurn] = useState<'HUMAN' | 'BOT'>(
     Math.random() < 0.5 ? 'HUMAN' : 'BOT',
   )
   const [isHumanMaximizing, setIsHumanMaximizing] = useState<boolean>(true)
+
+  const [gamesCount, setGamesCount] = useState({
+    wins: 0,
+    losses: 0,
+    draws: 0,
+  })
+
   const playSound = useSounds()
 
   const gameResult = isTerminal(state)
@@ -41,7 +49,7 @@ export default function Game(): ReactElement {
   }
 
   const handleOnCellPressed = (cell: number): void => {
-    if (turn !== 'HUMAN') return
+    if (turn != 'HUMAN') return
     insertCell(cell, isHumanMaximizing ? 'x' : 'o')
     setTurn('BOT')
   }
@@ -49,30 +57,32 @@ export default function Game(): ReactElement {
   const getWinner = (winnerSymbol: Cell): 'HUMAN' | 'BOT' | 'DRAW' => {
     if (winnerSymbol === 'x') {
       return isHumanMaximizing ? 'HUMAN' : 'BOT'
-    } else if (winnerSymbol === 'o') {
-      return isHumanMaximizing ? 'BOT' : 'HUMAN'
-    } else {
-      console.log(isHumanMaximizing)
-      return 'DRAW'
     }
+    if (winnerSymbol === 'o') {
+      return isHumanMaximizing ? 'BOT' : 'HUMAN'
+    }
+    return 'DRAW'
+  }
+
+  const newGame = () => {
+    setState([null, null, null, null, null, null, null, null, null])
+    setTurn(Math.random() < 0.5 ? 'HUMAN' : 'BOT')
   }
 
   useEffect(() => {
     if (gameResult) {
       const winner = getWinner(gameResult.winner)
-      // console.log(winner)
-
       if (winner === 'HUMAN') {
         playSound('win')
-        // alert('YOU WON...')
+        setGamesCount({ ...gamesCount, wins: gamesCount.wins + 1 })
       }
       if (winner === 'BOT') {
         playSound('loss')
-        // alert('YOU LOST!')
+        setGamesCount({ ...gamesCount, losses: gamesCount.losses + 1 })
       }
       if (winner === 'DRAW') {
         playSound('draw')
-        // alert("It's A Draw")
+        setGamesCount({ ...gamesCount, draws: gamesCount.draws + 1 })
       }
     } else {
       if (turn === 'BOT') {
@@ -86,7 +96,7 @@ export default function Game(): ReactElement {
           setIsHumanMaximizing(false)
           setTurn('HUMAN')
         } else {
-          const best = getBestMove(state, !isHumanMaximizing, 0, -1)
+          const best = getBestMove(state, !isHumanMaximizing, 0, 1)
           insertCell(best, isHumanMaximizing ? 'o' : 'x')
           setTurn('HUMAN')
         }
@@ -102,26 +112,26 @@ export default function Game(): ReactElement {
           <View style={styles.results}>
             <View style={styles.resultsBox}>
               <Text style={styles.resultsTitle}>Wins</Text>
-              <Text style={styles.resultsCount}>0</Text>
+              <Text style={styles.resultsCount}>{gamesCount.wins}</Text>
             </View>
             <View style={styles.resultsBox}>
               <Text style={styles.resultsTitle}>Draws</Text>
-              <Text style={styles.resultsCount}>0</Text>
+              <Text style={styles.resultsCount}>{gamesCount.draws}</Text>
             </View>
             <View style={styles.resultsBox}>
               <Text style={styles.resultsTitle}>Losses</Text>
-              <Text style={styles.resultsCount}>0</Text>
+              <Text style={styles.resultsCount}>{gamesCount.losses}</Text>
             </View>
           </View>
         </View>
         <Board
-          disabled={Boolean(isTerminal(state)) || turn !== 'HUMAN'}
+          disabled={Boolean(isTerminal(state)) || turn != 'HUMAN'}
           onCellPressed={(cell) => {
             handleOnCellPressed(cell)
           }}
           state={state}
           gameResult={gameResult}
-          size={SCREEN_WIDTH - 50}
+          size={SCREEN_WIDTH - 60}
         />
         {gameResult && (
           <View style={styles.modal}>
@@ -130,7 +140,12 @@ export default function Game(): ReactElement {
               {getWinner(gameResult.winner) === 'BOT' && 'You Lost'}
               {getWinner(gameResult.winner) === 'DRAW' && "It's a Draw"}
             </Text>
-            <Button title="Play Again" />
+            <Button
+              onPress={() => {
+                newGame()
+              }}
+              title="Play Again"
+            />
           </View>
         )}
       </SafeAreaView>

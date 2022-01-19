@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         fontFamily: "Poppins_700Bold",
         fontSize: 18,
         color: "#C52D2D",
-        textAlign: 'center'
+        textAlign: "center"
     }
 });
 

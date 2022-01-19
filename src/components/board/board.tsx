@@ -1,7 +1,7 @@
-import { BoardState, BoardResult } from '@utils'
 import React, { ReactElement } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import Text from '../text/text'
+import { BoardState, BoardResult } from '@utils'
 import BoardLine from './board-line'
 import styles from './board.styles'
 
@@ -10,7 +10,7 @@ type BoardProps = {
   size: number
   disabled?: boolean
   gameResult?: BoardResult | false
-  onCellPressed: (index: number) => void
+  onCellPressed?: (index: number) => void
 }
 
 export default function Board({
@@ -42,7 +42,7 @@ export default function Board({
               style={[
                 styles.cellText,
                 {
-                  fontSize: size / 5.5,
+                  fontSize: size / 7,
                 },
               ]}
             >

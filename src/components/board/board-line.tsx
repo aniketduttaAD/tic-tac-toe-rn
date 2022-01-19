@@ -5,17 +5,16 @@ import { BoardResult, colors } from '@utils'
 const style = StyleSheet.create({
   line: {
     position: 'absolute',
-    backgroundColor: colors.Red,
+    backgroundColor: colors.lightPurple,
   },
   vLine: {
-    width: 5,
+    width: 4,
   },
   hLine: {
-    height: 5,
+    height: 4,
   },
   dLine: {
-    width: 5,
-
+    width: 4,
     top: 0,
     left: '50%',
   },
@@ -32,10 +31,11 @@ export default function BoardLine({
 }: BoardLineProps): ReactElement {
   const diagonalHeight = Math.sqrt(Math.pow(size, 2) + Math.pow(size, 2))
   const animationRef = useRef<Animated.Value>(new Animated.Value(0))
+
   useEffect(() => {
     Animated.timing(animationRef.current, {
       toValue: 1,
-      duration: 600,
+      duration: 700,
       useNativeDriver: false,
     }).start()
   }, [])
@@ -71,7 +71,6 @@ export default function BoardLine({
           ]}
         ></Animated.View>
       )}
-
       {gameResult && gameResult.diagonal && gameResult.direction === 'D' && (
         <Animated.View
           style={[

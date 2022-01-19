@@ -2,19 +2,19 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        // paddingTop: 20
+        paddingTop: 5
     },
     logo: {
         alignSelf: "center",
-    height: 400, 
-    maxWidth: "80%",
+    height: 350, 
+    maxWidth: "85%",
         resizeMode: "contain"
     },
     buttons: {
-        marginTop:80,
+        marginTop:50,
     },
     button: {
-        marginBottom:20,
+        marginBottom:10,
     }
 });
 
