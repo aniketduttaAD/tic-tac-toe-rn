@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Audio } from 'expo-av'
 import * as Haptics from 'expo-haptics'
 
-type SoundType = "click2" | "winner1" | "winner2" | "loss1" | "loss2";
+type SoundType = "pop1" | "pop2" | "win" | "loss" | "draw";
 
 export default function useSounds() { 
     const popSoundRef = useRef<Audio.Sound | null>(null)
