@@ -4,7 +4,7 @@ import * as Haptics from 'expo-haptics'
 
 type SoundType = "pop1" | "pop2" | "win" | "loss" | "draw";
 
-export default function useSounds() { 
+export default function useSounds(): (sound: SoundType) => void{ 
     const popSoundRef = useRef<Audio.Sound | null>(null)
     const pop2SoundRef = useRef<Audio.Sound | null>(null)
     const winSoundRef = useRef<Audio.Sound | null>(null)
@@ -21,6 +21,24 @@ export default function useSounds() {
         }
         try {
             soundsMap[sound].current?.replayAsync();
+            switch (sound) {
+                case "pop1":
+                case "pop2":
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+                    break;
+                case "win":
+                    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+                    break;
+                case "win":
+                    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+                    break;
+                 case "win":
+                    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+                    break;
+
+                default:
+                    break;
+            }
         } catch (error) {
             console.log(error);
             
@@ -40,11 +58,11 @@ export default function useSounds() {
             popSoundRef.current = popSoundObject
             await pop2SoundObject.loadAsync(require('@assets/click2.wav'))
             pop2SoundRef.current = pop2SoundObject
-            await winSoundObject.loadAsync(require('@assets/winner1.mp3'))
+            await winSoundObject.loadAsync(require('@assets/win.mp3'))
             winSoundRef.current = winSoundObject
-            await lossSoundObject.loadAsync(require('@assets/loss2.mp3'))
+            await lossSoundObject.loadAsync(require('@assets/loss.mp3'))
             lossSoundRef.current = lossSoundObject
-            await drawSoundObject.loadAsync(require('@assets/loss1.mp3'))
+            await drawSoundObject.loadAsync(require('@assets/draw.mp3'))
             drawSoundRef.current = drawSoundObject
         }
         loadSounds()

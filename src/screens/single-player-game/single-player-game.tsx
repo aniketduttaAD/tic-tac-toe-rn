@@ -23,7 +23,6 @@ export default function Game(): ReactElement {
   )
   const [isHumanMaximizing, setIsHumanMaximizing] = useState<boolean>(true)
   const playSound = useSounds()
-  playSound('winner1')
 
   const gameResult = isTerminal(state)
 
@@ -33,10 +32,7 @@ export default function Game(): ReactElement {
     stateCopy[cell] = symbol
     setState(stateCopy)
     try {
-      symbol === 'x'
-        ? popSoundRef.current?.replayAsync()
-        : pop2SoundRef.current?.replayAsync()
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+      symbol === 'x' ? playSound('pop1') : playSound('pop2')
     } catch (error) {
       console.log(error)
     }
@@ -62,33 +58,18 @@ export default function Game(): ReactElement {
   useEffect(() => {
     if (gameResult) {
       const winner = getWinner(gameResult.winner)
-      console.log(winner)
+      // console.log(winner)
 
       if (winner === 'HUMAN') {
-        try {
-          winSoundRef.current?.replayAsync()
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
-        } catch (error) {
-          console.log(error)
-        }
+        playSound('win')
         alert('YOU WON...')
       }
       if (winner === 'BOT') {
-        try {
-          lossSoundRef.current?.replayAsync()
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
-        } catch (error) {
-          console.log(error)
-        }
-        alert('YOU LOST!!!')
+        playSound('loss')
+        alert('YOU LOST!')
       }
       if (winner === 'DRAW') {
-        try {
-          drawSoundRef.current?.replayAsync()
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
-        } catch (error) {
-          console.log(error)
-        }
+        playSound('draw')
         alert("It's A Draw")
       }
     } else {
