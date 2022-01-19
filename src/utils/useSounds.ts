@@ -11,20 +11,21 @@ export default function useSounds(): (sound: SoundType) => void{
     const lossSoundRef = useRef<Audio.Sound | null>(null)
     const drawSoundRef = useRef<Audio.Sound | null>(null)
      
-    const playSound = (sound: SoundType): void => {   
+    const playSound = async(sound: SoundType): Promise<void> => {   
         const soundsMap = {
             pop1: popSoundRef,
             pop2: pop2SoundRef,
             win: winSoundRef,
             loss: lossSoundRef,
             draw: drawSoundRef,
-        }
+        };
         try {
-            soundsMap[sound].current?.replayAsync();
+            const status = await soundsMap[sound].current?.getStatusAsync();
+            status && status.isLoaded && soundsMap[sound].current?.replayAsync();
             switch (sound) {
                 case "pop1":
                 case "pop2":
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                     break;
                 case "win":
                     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

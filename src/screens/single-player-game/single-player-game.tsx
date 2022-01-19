@@ -101,6 +101,7 @@ export default function Game(): ReactElement {
             handleOnCellPressed(cell)
           }}
           state={state}
+          gameResult={gameResult}
           size={350}
         />
       </GradientBackground>

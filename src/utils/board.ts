@@ -44,8 +44,8 @@ export const isTerminal = (state: BoardState):
         [3, 4, 5],
         [6, 7, 8],
         [0, 3, 6],
-        [2, 5, 8],
         [1, 4, 7],
+        [2, 5, 8],
         [0, 4, 8],
         [2, 4, 6],
     ];
@@ -65,13 +65,13 @@ export const isTerminal = (state: BoardState):
             if (index >= 3 && index <= 5)
             {
                 result.direction = "V";
-                if (index === 3)
-                    result.column = 1;
-                if (index === 4)
-                    result.column = 2;
-                if (index === 5)
-                    result.column = 3;
-                // result.column = index === 3 ? 1 : index === 4 ? 2 : index === 5 ? 2;
+                // if (index === 3)
+                //     result.column = 1;
+                // if (index === 4)
+                //     result.column = 2;
+                // if (index === 5)
+                //     result.column = 3;
+                result.column = index === 3 ? 1 : index === 4 ? 2 : 3;
             } 
             if (index >=6)
             {
