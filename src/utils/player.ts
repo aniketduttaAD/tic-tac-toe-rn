@@ -34,7 +34,7 @@ export const getBestMove = (state: BoardState, maximizing:
             if (depth === 0) {
                 const arr = childValues[best].split(",");
                 const rand = Math.floor(Math.random() * arr.length);
-                console.log(arr[rand], childValues[best]);
+                // console.log(arr[rand], childValues[best]);
                 return parseInt(arr[rand]);
             }
             return best;
@@ -55,11 +55,9 @@ export const getBestMove = (state: BoardState, maximizing:
             });
             if (depth === 0) {
                 const arr = childValues[best].split(",");
-                if (arr.length !== 1) {
                     const rand = Math.floor(Math.random() * arr.length);
-                    console.log(arr[rand], childValues[best]);
+                    // console.log(arr[rand], childValues[best]);
                     return parseInt(arr[rand]);
-                }
             }
                 return best;
         }

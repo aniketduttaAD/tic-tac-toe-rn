@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { StatusBar } from 'expo-status-bar'
 import { ReactElement } from 'react'
 import { ReactNode } from 'react'
+import { colors } from '@utils'
 
 type GradientBackgroundProps = {
   children: ReactNode
@@ -22,7 +23,7 @@ export default function GradientBackground({
           top: 0,
           bottom: 0,
         }}
-        colors={['#000000', '#000000']}
+        colors={['#000000', '#000006']}
       />
       {children}
     </View>

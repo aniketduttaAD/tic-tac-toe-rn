@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ReactElement } from 'react'
-import { Text, SafeAreaView } from 'react-native'
-import { GradientBackground, Board } from '@components'
+import { SafeAreaView, View, Dimensions } from 'react-native'
+import { GradientBackground, Board, Text, Button } from '@components'
 import styles from './single-player-game.styles'
 import {
   isEmpty,
@@ -10,6 +10,8 @@ import {
   Cell,
   useSounds,
 } from '@utils'
+
+const SCREEN_WIDTH = Dimensions.get('screen').width
 
 export default function Game(): ReactElement {
   //prettier-ignore
@@ -62,15 +64,15 @@ export default function Game(): ReactElement {
 
       if (winner === 'HUMAN') {
         playSound('win')
-        alert('YOU WON...')
+        // alert('YOU WON...')
       }
       if (winner === 'BOT') {
         playSound('loss')
-        alert('YOU LOST!')
+        // alert('YOU LOST!')
       }
       if (winner === 'DRAW') {
         playSound('draw')
-        alert("It's A Draw")
+        // alert("It's A Draw")
       }
     } else {
       if (turn === 'BOT') {
@@ -93,8 +95,25 @@ export default function Game(): ReactElement {
   }, [state, turn])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <GradientBackground>
+    <GradientBackground>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Text style={styles.difficulty}>Difficulty: Hard</Text>
+          <View style={styles.results}>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Wins</Text>
+              <Text style={styles.resultsCount}>0</Text>
+            </View>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Draws</Text>
+              <Text style={styles.resultsCount}>0</Text>
+            </View>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Losses</Text>
+              <Text style={styles.resultsCount}>0</Text>
+            </View>
+          </View>
+        </View>
         <Board
           disabled={Boolean(isTerminal(state)) || turn !== 'HUMAN'}
           onCellPressed={(cell) => {
@@ -102,9 +121,19 @@ export default function Game(): ReactElement {
           }}
           state={state}
           gameResult={gameResult}
-          size={350}
+          size={SCREEN_WIDTH - 50}
         />
-      </GradientBackground>
-    </SafeAreaView>
+        {gameResult && (
+          <View style={styles.modal}>
+            <Text style={styles.modalText}>
+              {getWinner(gameResult.winner) === 'HUMAN' && 'You Won'}
+              {getWinner(gameResult.winner) === 'BOT' && 'You Lost'}
+              {getWinner(gameResult.winner) === 'DRAW' && "It's a Draw"}
+            </Text>
+            <Button title="Play Again" />
+          </View>
+        )}
+      </SafeAreaView>
+    </GradientBackground>
   )
 }
