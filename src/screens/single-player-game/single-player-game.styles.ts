@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     },
     difficulty: {
         color: colors.white,
-        fontSize: 22,
+        fontSize: 24,
         textAlign: "center",
-        marginBottom: 20
+        marginBottom: 15
     },
     results: {
         flexDirection: "row",
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     },
     resultsBox: {
         backgroundColor: colors.black,
-        borderWidth: 1,
-        borderColor: colors.Red,
+        borderWidth: 4,
+        borderColor: colors.lightGreen,
         alignItems: "center",
-        padding: 18,
+        padding: 15,
         marginHorizontal: 5
     },
     resultsTitle: {

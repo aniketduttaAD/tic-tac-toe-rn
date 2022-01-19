@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     cell: {
         width: "33.33333%",
         height: "33.33333%",
-        borderWidth: 2,
-        borderColor: colors.white,
+        borderWidth: 3,
+        borderColor: colors.lightGreen,
         alignItems: "center",
         justifyContent: "center"
     },

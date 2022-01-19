@@ -5,7 +5,7 @@ import { BoardResult, colors } from '@utils'
 const style = StyleSheet.create({
   line: {
     position: 'absolute',
-    backgroundColor: colors.lightPurple,
+    backgroundColor: colors.darkPurple,
   },
   vLine: {
     width: 4,
