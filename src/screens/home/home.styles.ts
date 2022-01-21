@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
         paddingTop: 5
     },
     logo: {
-        alignSelf: "center",
-    height: 350, 
-    maxWidth: "85%",
-        resizeMode: "contain"
+    alignSelf: "center",
+    height: 380, 
+    maxWidth: "80%",
+    resizeMode: "contain"
     },
     buttons: {
         marginTop:50,

@@ -5,25 +5,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        // marginTop: -5
+        marginTop:25
     },
     difficulty: {
-        color: colors.white,
-        fontSize: 24,
+        color: colors.lightGreen,
+        fontSize: 26,
         textAlign: "center",
-        marginBottom: 15
+        marginBottom: 10
     },
     results: {
         flexDirection: "row",
         justifyContent: "center",
-        marginBottom: 80
+        marginBottom: 75
     },
     resultsBox: {
         backgroundColor: colors.black,
-        borderWidth: 4,
+        borderWidth: 5,
         borderColor: colors.lightGreen,
         alignItems: "center",
-        padding: 15,
+        padding: 16,
         marginHorizontal: 5
     },
     resultsTitle: {
@@ -32,23 +32,23 @@ const styles = StyleSheet.create({
     },
     resultsCount: {
         color: colors.lightPurple,
-        fontSize: 20
+        fontSize: 22
     },
     modal: {
         position: "absolute",
-        backgroundColor: colors.cyan,
-        bottom: 40,
-        left: 30,
-        right: 30,
-        padding: 30,
+        backgroundColor: colors.allthatjazz,
+        bottom: 15,
+        left: 50,
+        right: 50,
+        padding: 22,
         borderWidth: 3,
         borderColor: colors.white
     },
     modalText: {
         color: colors.white,
-        fontSize: 28,
+        fontSize: 35,
         textAlign: "center",
-        marginBottom: 30
+        marginBottom: 20
     }
 });
 
