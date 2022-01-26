@@ -4,19 +4,20 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack'
-import { Home, SinglePlayerGame, Settings } from '@screens'
+import { Home, SinglePlayerGame, Settings, Login, Signup } from '@screens'
 import { colors } from '@utils'
-import { Poppins_700Bold } from '@expo-google-fonts/poppins'
 
 export type StackNavigatorParas = {
   Home: undefined
   SinglePlayerGame: undefined
   Settings: undefined
+  Login: undefined
+  SignUp: undefined
 }
 const Stack = createStackNavigator<StackNavigatorParas>()
 const navigatorOptions: StackNavigationOptions = {
   headerStyle: {
-    backgroundColor: colors.lightPurple,
+    backgroundColor: colors.periwinkle,
     shadowRadius: 0,
     shadowOffset: { height: 0, width: 0 },
   },
@@ -46,6 +47,12 @@ export default function Navigator(): ReactElement {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen
+          name="SignUp"
+          component={Signup}
+          options={{ title: 'Sign Up' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

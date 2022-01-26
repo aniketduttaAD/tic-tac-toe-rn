@@ -10,12 +10,13 @@ const colors = {
     purple: "#221a36",
     cyan2:"#C21B5C",
     pink: "#B62A98",
-    teal: "#008080",
+    teal: "#008090",
     serendipity: "#9ED3C6",
     allthatjazz: "#3491B1",
     yellow: "#D7AD00",
     pinkpistol: "#FF295D",
-    periwinkle: "#CCCCFF"
+    periwinkle: "#CCCCFF",
+    lightblack: "#161616"
 
 };
 

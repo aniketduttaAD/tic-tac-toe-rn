@@ -15,10 +15,13 @@
             {
               "authenticationType": "API_KEY",
               "apiKeyConfig": {
-                "apiKeyExpirationDays": 365,
-                "apiKeyExpirationDate": "2023-01-23T20:03:36.693Z",
-                "description": "tictactoe"
+                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDate": "2022-02-01T13:44:08.154Z",
+                "description": "test"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
