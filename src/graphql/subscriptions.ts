@@ -2,36 +2,45 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreatePlayer = /* GraphQL */ `
+  subscription OnCreatePlayer($owner: String) {
+    onCreatePlayer(owner: $owner) {
       id
+      cognitoID
+      username
       name
-      description
+      email
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdatePlayer = /* GraphQL */ `
+  subscription OnUpdatePlayer($owner: String) {
+    onUpdatePlayer(owner: $owner) {
       id
+      cognitoID
+      username
       name
-      description
+      email
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeletePlayer = /* GraphQL */ `
+  subscription OnDeletePlayer($owner: String) {
+    onDeletePlayer(owner: $owner) {
       id
+      cognitoID
+      username
       name
-      description
+      email
       createdAt
       updatedAt
+      owner
     }
   }
 `;

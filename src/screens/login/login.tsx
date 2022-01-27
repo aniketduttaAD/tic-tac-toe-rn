@@ -33,8 +33,11 @@ export default function Login({ navigation }: LoginProps): ReactElement {
       await Auth.signIn(username, password)
       navigation.navigate('Home')
     } catch (error) {
-      if (error && error instanceof Error) Alert.alert('Error!', error.message)
-      else Alert.alert('Error!', 'An error has occured!')
+      console.log(error)
+      if (error instanceof Error) navigation.navigate('SignUp', { username })
+      else {
+        Alert.alert('Error!', 'An error has occured!')
+      }
     }
     setLoading(false)
   }
@@ -65,7 +68,6 @@ export default function Login({ navigation }: LoginProps): ReactElement {
           secureTextEntry
           placeholder="Password"
         />
-
         <Button
           loading={loading}
           title="Login"
@@ -78,8 +80,15 @@ export default function Login({ navigation }: LoginProps): ReactElement {
           }}
         >
           <Text style={styles.registerLink}>
-            Don&apos;t have a account, Signup now
+            Don&apos;t have a account, Signup now !
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('ForgotPassword')
+          }}
+        >
+          <Text style={styles.forgotPasswordLink}>Forgot Password ? </Text>
         </TouchableOpacity>
       </ScrollView>
     </GradientBackground>

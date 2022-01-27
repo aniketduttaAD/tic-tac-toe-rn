@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
         color: colors.lightGreen,
         fontSize: 20
         
+    },
+    resendLink: {
+        color: colors.lightGreen,
+        textAlign: "right",
+        fontSize: 15,
+        marginTop: 10,
+        fontFamily:"Poppins_400Regular",
+        textDecorationLine: "underline"
     }
 });
 
