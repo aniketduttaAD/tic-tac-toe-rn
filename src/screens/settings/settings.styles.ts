@@ -3,15 +3,15 @@ import { colors } from "@utils";
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 50,
-        paddingVertical: 50
+        paddingHorizontal: 30,
+        paddingVertical: 40
     },
     field: {
         marginBottom: 30
     },
     label: {
         color: colors.periwinkle,
-        fontSize: 20
+        fontSize: 17
     },
     choices: {
         flexDirection: "row",
@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center"
+    },
+    changePasswordLink: {
+        textAlign:"right",
+        color: colors.periwinkle,
+        fontSize: 15
     }
 });
 
