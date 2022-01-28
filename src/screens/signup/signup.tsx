@@ -35,10 +35,10 @@ export default function SignUp({
   const emailRef = useRef<NativeTextInput | null>(null)
   const nameRef = useRef<NativeTextInput | null>(null)
   const [form, setForm] = useState({
-    username: 'test',
-    email: 'encarnacion35@owageskuo.com',
-    name: 'test name',
-    password: '12345678',
+    username: '',
+    email: '',
+    name: '',
+    password: '',
   })
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState<'signUp' | 'otp'>(

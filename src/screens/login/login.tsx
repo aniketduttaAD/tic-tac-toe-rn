@@ -18,8 +18,8 @@ type LoginProps = {
 export default function Login({ navigation }: LoginProps): ReactElement {
   const passwordRef = useRef<NativeTextInput | null>(null)
   const [form, setForm] = useState({
-    username: 'test',
-    password: '12345678',
+    username: '',
+    password: '',
   })
   const [loading, setLoading] = useState(false)
   const setFormInput = (key: keyof typeof form, value: string) => {

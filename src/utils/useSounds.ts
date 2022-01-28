@@ -64,10 +64,10 @@ export default function useSounds(): (sound: SoundType) => void {
             await pop2SoundObject.loadAsync(require("@assets/click2.wav"));
             pop2SoundRef.current = pop2SoundObject;
 
-            await winSoundObject.loadAsync(require("@assets/winner2.mp3"));
+            await winSoundObject.loadAsync(require("@assets/win.mp3"));
             winSoundRef.current = winSoundObject;
 
-            await lossSoundObject.loadAsync(require("@assets/loss2.mp3"));
+            await lossSoundObject.loadAsync(require("@assets/loss.mp3"));
             lossSoundRef.current = lossSoundObject;
 
             await drawSoundObject.loadAsync(require("@assets/draw.mp3"));
