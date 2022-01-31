@@ -75,7 +75,7 @@ export default function ForgotPassword({
           {step === '1' && (
             <TextInput
               returnKeyType="next"
-              style={{ marginBottom: 20 }}
+              style={{ marginBottom: 10 }}
               placeholder="Username"
               value={form.username}
               onChangeText={(value) => setFormInput('username', value)}
@@ -107,7 +107,7 @@ export default function ForgotPassword({
           )}
 
           <Button
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, marginHorizontal: 80 }}
             loading={loading}
             onPress={() => {
               if (step === '1') {

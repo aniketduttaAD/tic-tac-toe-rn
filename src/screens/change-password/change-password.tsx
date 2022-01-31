@@ -11,6 +11,7 @@ import styles from './change-password.styles'
 import { Auth } from 'aws-amplify'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useAuth } from '@contexts/auth-context'
+import { colors } from '@utils'
 
 export default function ChangePassword(): ReactElement {
   const headerHeight = useHeaderHeight()
@@ -61,7 +62,7 @@ export default function ChangePassword(): ReactElement {
               <TextInput
                 secureTextEntry
                 returnKeyType="next"
-                style={{ marginBottom: 20 }}
+                style={{ marginBottom: 15, backgroundColor: colors.lightGreen }}
                 placeholder="Old Password"
                 onSubmitEditing={() => {
                   newPasswordRef.current?.focus()
@@ -72,7 +73,7 @@ export default function ChangePassword(): ReactElement {
               <TextInput
                 secureTextEntry
                 returnKeyType="done"
-                style={{ marginBottom: 30 }}
+                style={{ marginBottom: 20, backgroundColor: colors.lightGreen }}
                 ref={newPasswordRef}
                 placeholder="New Password"
                 value={form.newPassword}
@@ -82,6 +83,7 @@ export default function ChangePassword(): ReactElement {
               <Button
                 loading={loading}
                 onPress={changePassword}
+                style={{ marginHorizontal: 50 }}
                 title="Change Password"
               />
             </>
