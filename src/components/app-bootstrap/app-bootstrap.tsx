@@ -47,8 +47,7 @@ export default function AppBootstrap({
         case 'signIn':
           setUser(data)
           break
-        case 'signIn':
-          setUser(data)
+        
         default:
           break
       }
